@@ -564,21 +564,17 @@
         ? submitBtn.getAttribute('data-id-loading')
         : submitBtn.getAttribute('data-en-loading');
 
-      let memberNumber = '—';
-      try{
-        let count = 0;
-        try{
-          const list = await window.storage.list('member:', true);
-          count = list && list.keys ? list.keys.length : 0;
-        }catch(err){
-          count = 0;
-        }
-        memberNumber = String(count + 1).padStart(4, '0');
+      const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyttnUqW4FHvtJAUYk9AaaHXm9j37j-QpJcrInsmuvhYu2lHjTIKzLQJzXDPmhwbuXx/exec';
 
-        const key = 'member:' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
-        await window.storage.set(key, JSON.stringify({ ...data, memberNumber, lang: currentLang, joinedAt: new Date().toISOString() }), true);
+      try{
+        await fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ ...data, lang: currentLang, joinedAt: new Date().toISOString() })
+        });
       }catch(err){
-        console.error('Storage error:', err);
+        console.error('Sheet submit error:', err);
       }
 
       formSection.classList.add('hidden');
