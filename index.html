@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Bridges — Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000000;
+    --ink:#111111;
+    --ink-70: rgba(0,0,0,.70);
+    --ink-50: rgba(0,0,0,.50);
+    --ink-30: rgba(0,0,0,.30);
+    --ink-15: rgba(0,0,0,.15);
+    --white:#ffffff;
+    --serif: 'Fraunces', serif;
+    --sans: 'IBM Plex Mono', monospace;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--white);
+    color:var(--black);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- LANGUAGE TOGGLE ---------- */
+  .lang-toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:10;
+    display:flex;
+    border:1px solid var(--black);
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    overflow:hidden;
+  }
+  .lang-toggle button{
+    background:var(--white);
+    color:var(--black);
+    border:none;
+    padding:7px 12px;
+    cursor:pointer;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+  }
+  .lang-toggle button + button{ border-left:1px solid var(--black); }
+  .lang-toggle button.active{
+    background:var(--black);
+    color:var(--white);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:8vh 6vw 4vh;
+    text-align:center;
+    border-bottom:1px solid var(--ink-15);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--ink-50);
+  }
+  h1.wordmark{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(48px, 10vw, 118px);
+    line-height:0.95;
+    margin:14px 0 6px;
+    letter-spacing:-0.01em;
+  }
+  h1.wordmark em{
+    font-style:italic;
+    font-weight:500;
+  }
+  .byline{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink-50);
+    margin-bottom:22px;
+  }
+  .tagline{
+    font-family:var(--sans);
+    font-size:14px;
+    letter-spacing:.03em;
+    color:var(--ink-70);
+    max-width:440px;
+    margin:0 auto;
+  }
+
+  /* ---------- BRIDGE SIGNATURE ---------- */
+  .bridge-wrap{
+    margin:6vh auto 0;
+    max-width:920px;
+    padding:0 6vw;
+  }
+  .bridge-svg{width:100%; height:auto; display:block; overflow:visible;}
+  .bridge-line{
+    fill:none;
+    stroke:var(--black);
+    stroke-width:1.4;
+    stroke-linecap:round;
+    stroke-dasharray:1400;
+    stroke-dashoffset:1400;
+    animation:draw 2.1s ease-out .2s forwards;
+  }
+  .bridge-pylon{
+    stroke:var(--black);
+    stroke-width:1.4;
+    stroke-dasharray:200;
+    stroke-dashoffset:200;
+    animation:draw 1s ease-out .9s forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .bridge-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    fill:var(--black);
+    opacity:0;
+    animation:fadein .6s ease-out 1.6s forwards;
+  }
+  @keyframes fadein{ to{ opacity:1; } }
+
+  /* ---------- FORM SECTION ---------- */
+  .form-section{
+    max-width:640px;
+    margin:0 auto;
+    padding:9vh 6vw 12vh;
+  }
+  .form-heading{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(28px,4vw,38px);
+    margin:0 0 6px;
+  }
+  .form-sub{
+    color:var(--ink-50);
+    font-size:14px;
+    margin:0 0 6vh;
+    line-height:1.5;
+  }
+
+  .q{
+    padding:26px 0;
+    border-bottom:1px solid var(--ink-15);
+    display:grid;
+    grid-template-columns:38px 1fr;
+    gap:4px 18px;
+    align-items:start;
+  }
+  .q:first-of-type{padding-top:0;}
+  .q-num{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-30);
+    padding-top:3px;
+    grid-row:1;
+  }
+  .q-label{
+    font-size:15px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:14px;
+    grid-row:1;
+    grid-column:2;
+  }
+  .q-field{grid-row:2; grid-column:2;}
+
+  input[type="text"], input[type="number"], select{
+    width:100%;
+    font-family:var(--sans);
+    font-size:16px;
+    color:var(--black);
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--ink-30);
+    padding:8px 2px;
+    outline:none;
+    appearance:none;
+    -webkit-appearance:none;
+    border-radius:0;
+  }
+  select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23000'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 4px center;
+    cursor:pointer;
+  }
+  textarea{
+    width:100%;
+    font-family:var(--sans);
+    font-size:16px;
+    color:var(--black);
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--ink-30);
+    padding:8px 2px;
+    outline:none;
+    resize:vertical;
+    min-height:70px;
+    line-height:1.5;
+  }
+  input::placeholder, textarea::placeholder{ color:var(--ink-30); }
+  input:focus, select:focus, textarea:focus{
+    border-bottom:1.5px solid var(--black);
+  }
+  .ig-field{
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid var(--ink-30);
+  }
+  .ig-field span{
+    font-family:var(--sans);
+    color:var(--ink-50);
+    padding-right:2px;
+  }
+  .ig-field:focus-within{ border-bottom:1.5px solid var(--black); }
+  .ig-field input{ border-bottom:none; padding-left:0; }
+
+  .choice-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .choice{
+    position:relative;
+  }
+  .choice input{
+    position:absolute;
+    opacity:0;
+    width:100%;
+    height:100%;
+    margin:0;
+    cursor:pointer;
+  }
+  .choice label{
+    display:block;
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:9px 16px;
+    border:1px solid var(--ink-30);
+    color:var(--ink-70);
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .choice input:checked + label{
+    background:var(--black);
+    color:var(--white);
+    border-color:var(--black);
+  }
+  .choice input:focus-visible + label{
+    outline:2px solid var(--black);
+    outline-offset:2px;
+  }
+
+  .submit-row{
+    margin-top:5vh;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  button.submit{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    background:var(--black);
+    color:var(--white);
+    border:1px solid var(--black);
+    padding:15px 30px;
+    cursor:pointer;
+    transition:opacity .15s ease;
+  }
+  button.submit:hover{ opacity:.82; }
+  button.submit:disabled{ opacity:.4; cursor:not-allowed; }
+  .error-msg{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-70);
+    display:none;
+  }
+
+  /* ---------- CONFIRMATION ---------- */
+  .confirm{
+    display:none;
+    max-width:520px;
+    margin:0 auto;
+    padding:10vh 6vw 14vh;
+    text-align:center;
+  }
+  .confirm.active{ display:block; }
+  .form-section.hidden{ display:none; }
+  .card{
+    border:1px solid var(--black);
+    padding:44px 30px;
+  }
+  .card .eyebrow{ margin-bottom:6px; }
+  .card h2{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:30px;
+    margin:0 0 18px;
+  }
+  .thanks-line{
+    font-size:15px;
+    line-height:1.6;
+    color:var(--ink-70);
+    margin:0 0 18px;
+  }
+  .thanks-sign{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:18px;
+    color:var(--black);
+    margin:0;
+  }
+
+  footer{
+    text-align:center;
+    padding:5vh 6vw 6vh;
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ink-30);
+    border-top:1px solid var(--ink-15);
+  }
+</style>
+</head>
+<body>
+
+  <div class="lang-toggle">
+    <button type="button" id="btnEn" class="active">EN</button>
+    <button type="button" id="btnId">ID</button>
+  </div>
+
+  <section class="hero">
+    <h1 class="wordmark">White <em>Bridges</em></h1>
+    <div class="byline">by Anessa Huang</div>
+    <p class="tagline" data-en="A club connecting three worlds — the page, the screen, and the frame. Register below to cross over." data-id="Klub yang menghubungkan tiga dunia — halaman buku, layar bioskop, dan bingkai seni. Daftar di bawah untuk menyeberang.">A club connecting three worlds — the page, the screen, and the frame. Register below to cross over.</p>
+
+    <div class="bridge-wrap">
+      <svg class="bridge-svg" viewBox="0 0 920 160" preserveAspectRatio="xMidYMid meet">
+        <line class="bridge-pylon" x1="120" y1="20" x2="120" y2="130"/>
+        <line class="bridge-pylon" x1="460" y1="10" x2="460" y2="130"/>
+        <line class="bridge-pylon" x1="800" y1="20" x2="800" y2="130"/>
+        <path class="bridge-line" d="M20,130 C 120,60 220,130 320,130 C 380,130 400,10 460,10 C 520,10 540,130 600,130 C 700,130 800,60 900,130"/>
+        <line class="bridge-line" x1="20" y1="130" x2="900" y2="130" stroke-dasharray="900" style="animation-delay:1.1s;"/>
+        <text class="bridge-label" x="120" y="150" text-anchor="middle" data-en="Book" data-id="Buku">Book</text>
+        <text class="bridge-label" x="460" y="150" text-anchor="middle" data-en="Cinema" data-id="Film">Cinema</text>
+        <text class="bridge-label" x="800" y="150" text-anchor="middle" data-en="Art" data-id="Seni">Art</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="form-section" id="formSection">
+    <h2 class="form-heading" data-en="Cross the bridge" data-id="Seberangi jembatan">Cross the bridge</h2>
+
+    <form id="regForm">
+
+      <div class="q">
+        <div class="q-num">01</div>
+        <div class="q-label" data-en="Your socials (Instagram)" data-id="Media sosial Anda (Instagram)">Your socials (Instagram)</div>
+        <div class="q-field">
+          <div class="ig-field">
+            <span>@</span>
+            <input type="text" id="instagram" placeholder="yourhandle" required autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">02</div>
+        <div class="q-label" data-en="Your age" data-id="Usia Anda">Your age</div>
+        <div class="q-field">
+          <input type="number" id="age" data-ph-en="e.g. 27" data-ph-id="cth. 27" placeholder="e.g. 27" min="10" max="99" required>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">03</div>
+        <div class="q-label" data-en="Your education" data-id="Pendidikan Anda">Your education</div>
+        <div class="q-field">
+          <select id="education" required>
+            <option value="" disabled selected data-en="Select level" data-id="Pilih jenjang">Select level</option>
+            <option value="SMP">SMP</option>
+            <option value="SMA">SMA</option>
+            <option value="S1">S1</option>
+            <option value="S2">S2</option>
+            <option value="S3">S3</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">04</div>
+        <div class="q-label" data-en="Your work" data-id="Pekerjaan Anda">Your work</div>
+        <div class="q-field">
+          <input type="text" id="work" data-ph-en="e.g. founder, student, architect" data-ph-id="cth. founder, mahasiswa, arsitek" placeholder="e.g. founder, student, architect" required>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">05</div>
+        <div class="q-label" data-en="Your base" data-id="Domisili Anda">Your base</div>
+        <div class="q-field">
+          <select id="base" required>
+            <option value="" disabled selected data-en="Select city" data-id="Pilih kota">Select city</option>
+            <option value="Jakarta">Jakarta</option>
+            <option value="Tangerang">Tangerang</option>
+            <option value="Bekasi">Bekasi</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">06</div>
+        <div class="q-label" data-en="Your interest" data-id="Minat Anda">Your interest</div>
+        <div class="q-field">
+          <div class="choice-row" id="interestRow">
+            <div class="choice"><input type="checkbox" name="interest" id="int-art" value="Art"><label for="int-art" data-en="Art" data-id="Seni">Art</label></div>
+            <div class="choice"><input type="checkbox" name="interest" id="int-book" value="Book"><label for="int-book" data-en="Book" data-id="Buku">Book</label></div>
+            <div class="choice"><input type="checkbox" name="interest" id="int-cinema" value="Cinema"><label for="int-cinema" data-en="Cinema" data-id="Film">Cinema</label></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">07</div>
+        <div class="q-label" data-en="Your scope of interest" data-id="Cakupan minat Anda">Your scope of interest</div>
+        <div class="q-field">
+          <div class="choice-row" id="scopeRow">
+            <div class="choice"><input type="radio" name="scope" id="sc-id" value="Indonesia"><label for="sc-id">Indonesia</label></div>
+            <div class="choice"><input type="radio" name="scope" id="sc-asia" value="Asia"><label for="sc-asia">Asia</label></div>
+            <div class="choice"><input type="radio" name="scope" id="sc-eu" value="Europe"><label for="sc-eu" data-en="Europe" data-id="Eropa">Europe</label></div>
+            <div class="choice"><input type="radio" name="scope" id="sc-world" value="World"><label for="sc-world" data-en="World" data-id="Dunia">World</label></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">08</div>
+        <div class="q-label" data-en="Are you a Creator or a Connoisseur?" data-id="Anda seorang Kreator atau Penikmat?">Are you a Creator or a Connoisseur?</div>
+        <div class="q-field">
+          <div class="choice-row" id="roleRow">
+            <div class="choice"><input type="checkbox" name="role" id="role-creator" value="Creator"><label for="role-creator" data-en="Creator" data-id="Kreator">Creator</label></div>
+            <div class="choice"><input type="checkbox" name="role" id="role-connoisseur" value="Connoisseur"><label for="role-connoisseur" data-en="Connoisseur" data-id="Penikmat">Connoisseur</label></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">09</div>
+        <div class="q-label" data-en="What do you expect from this club?" data-id="Apa harapan Anda untuk klub ini?">What do you expect from this club?</div>
+        <div class="q-field">
+          <textarea id="expectation" data-ph-en="Tell us in a few words…" data-ph-id="Ceritakan dalam beberapa kata…" placeholder="Tell us in a few words…" required></textarea>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="submit" id="submitBtn" data-en="Cross the bridge →" data-id="Seberangi jembatan →" data-en-loading="Crossing…" data-id-loading="Menyeberang…">Cross the bridge →</button>
+        <span class="error-msg" id="errorMsg" data-en="Please answer every question first." data-id="Mohon jawab semua pertanyaan terlebih dahulu.">Please answer every question first.</span>
+      </div>
+    </form>
+  </section>
+
+  <section class="confirm" id="confirmSection">
+    <div class="card">
+      <div class="eyebrow" data-en="Welcome" data-id="Selamat datang">Welcome</div>
+      <h2 data-en="Thank you." data-id="Terima kasih.">Thank you.</h2>
+      <p class="thanks-line" data-en="We will contact you through Instagram DM! Please make sure you're available on weekdays or weekends for 2 hours for this club." data-id="Kami akan menghubungi Anda melalui DM Instagram! Pastikan Anda tersedia di hari kerja atau akhir pekan selama 2 jam untuk klub ini.">We will contact you through Instagram DM! Please make sure you're available on weekdays or weekends for 2 hours for this club.</p>
+      <p class="thanks-sign" data-en="Cheers &amp; see you 🍷!" data-id="Cheers &amp; sampai jumpa 🍷!">Cheers &amp; see you 🍷!</p>
+    </div>
+  </section>
+
+  <footer data-en="White Bridges — Book · Cinema · Art — Founded by Anessa Huang" data-id="White Bridges — Buku · Film · Seni — Didirikan oleh Anessa Huang">White Bridges — Book · Cinema · Art — Founded by Anessa Huang</footer>
+
+  <script>
+    const form = document.getElementById('regForm');
+    const errorMsg = document.getElementById('errorMsg');
+    const formSection = document.getElementById('formSection');
+    const confirmSection = document.getElementById('confirmSection');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnEn = document.getElementById('btnEn');
+    const btnId = document.getElementById('btnId');
+
+    let currentLang = 'en';
+
+    function applyLang(lang){
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      btnEn.classList.toggle('active', lang === 'en');
+      btnId.classList.toggle('active', lang === 'id');
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const val = lang === 'id' ? el.getAttribute('data-id') : el.getAttribute('data-en');
+        if(val !== null) el.innerHTML = val;
+      });
+      document.querySelectorAll('[data-ph-en]').forEach(el => {
+        const val = lang === 'id' ? el.getAttribute('data-ph-id') : el.getAttribute('data-ph-en');
+        if(val !== null) el.setAttribute('placeholder', val);
+      });
+    }
+
+    btnEn.addEventListener('click', () => applyLang('en'));
+    btnId.addEventListener('click', () => applyLang('id'));
+
+    function getRadioValue(name){
+      const el = form.querySelector('input[name="' + name + '"]:checked');
+      return el ? el.value : null;
+    }
+
+    function getCheckboxValues(name){
+      const els = form.querySelectorAll('input[name="' + name + '"]:checked');
+      return Array.from(els).map(el => el.value);
+    }
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      errorMsg.style.display = 'none';
+
+      const interestValues = getCheckboxValues('interest');
+      const roleValues = getCheckboxValues('role');
+
+      const data = {
+        instagram: document.getElementById('instagram').value.trim(),
+        age: document.getElementById('age').value.trim(),
+        education: document.getElementById('education').value,
+        work: document.getElementById('work').value.trim(),
+        base: document.getElementById('base').value,
+        interest: interestValues.join(', '),
+        scope: getRadioValue('scope'),
+        role: roleValues.join(', '),
+        expectation: document.getElementById('expectation').value.trim(),
+      };
+
+      const allFilled = Object.values(data).every(v => v && v.length > 0);
+      if(!allFilled){
+        errorMsg.style.display = 'inline';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = currentLang === 'id'
+        ? submitBtn.getAttribute('data-id-loading')
+        : submitBtn.getAttribute('data-en-loading');
+
+      let memberNumber = '—';
+      try{
+        let count = 0;
+        try{
+          const list = await window.storage.list('member:', true);
+          count = list && list.keys ? list.keys.length : 0;
+        }catch(err){
+          count = 0;
+        }
+        memberNumber = String(count + 1).padStart(4, '0');
+
+        const key = 'member:' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+        await window.storage.set(key, JSON.stringify({ ...data, memberNumber, lang: currentLang, joinedAt: new Date().toISOString() }), true);
+      }catch(err){
+        console.error('Storage error:', err);
+      }
+
+      formSection.classList.add('hidden');
+      confirmSection.classList.add('active');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  </script>
+
+</body>
+</html>
