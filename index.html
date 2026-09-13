@@ -56,6 +56,23 @@
   #act1 .origin-mark .small{ font-size:.42em; display:block; color:var(--cream); opacity:.8; font-style:italic; margin-top:6px; }
   #act1 .origin-tagline{ font-size:1.02rem; color:var(--cream); opacity:.85; max-width:46ch; margin-top:22px; line-height:1.6; }
   #act1 .origin-tagline .id{ display:block; margin-top:8px; font-style:italic; opacity:.75; }
+  #act1 .origin-link{
+    display:inline-flex; align-items:center; gap:6px; margin-top:26px;
+    font-family:'Manrope',sans-serif; font-size:.88rem; font-weight:700; color:var(--coral);
+    border-bottom:1px solid rgba(226,121,92,.4); padding-bottom:2px; transition:border-color .2s ease, color .2s ease;
+  }
+  #act1 .origin-link:hover{ color:var(--white); border-color:var(--white); }
+
+  #act1 .lang-toggle{
+    position:fixed; top:20px; right:20px; z-index:50;
+    display:flex; background:rgba(32,47,66,0.92); border-radius:999px; overflow:hidden;
+    box-shadow:0 4px 14px rgba(0,0,0,.18);
+  }
+  #act1 .lang-toggle button{
+    background:transparent; color:var(--cream); border:none; padding:8px 16px; cursor:pointer;
+    font-family:'Manrope',sans-serif; font-size:11px; font-weight:700; letter-spacing:.05em;
+  }
+  #act1 .lang-toggle button.active{ background:var(--coral); color:var(--white); }
 
   #act1 .story{ padding:9vh 0; }
   #act1 .section-tag{ font-size:.84rem; font-weight:700; color:var(--coral-dark); margin-bottom:14px; display:block; }
@@ -271,29 +288,34 @@
 <!-- ================= ACT 1 : MULAI DISINI PROJECT ================= -->
 <div id="act1">
 
+  <div class="lang-toggle" id="act1LangToggle">
+    <button type="button" class="a1-btn-en active">EN</button>
+    <button type="button" class="a1-btn-id">ID</button>
+  </div>
+
   <section class="origin">
     <div class="blob b1"></div>
     <div class="blob b2"></div>
     <div class="blob b3"></div>
     <div class="wrap">
-      <div class="eyebrow"><span class="dot"></span> Where it all began</div>
+      <div class="eyebrow"><span class="dot"></span> <span data-en="Where it all began" data-id="Awal mula semuanya">Where it all began</span></div>
       <div class="origin-mark">mulai di sini<span class="small">berbagi, maknai, tanami</span></div>
-      <p class="origin-tagline">In 2020, a small group of university students started Mulai Disini Project — a platform to bring non-academic education to SMA/SMK students across Indonesia, through sharing, mentorship, and self-development.
-        <span class="id">Berangkat dari ajakan berbagi, memaknai dengan kesungguhan hati, tanami akal budi, dan kita mulai di sini.</span>
-      </p>
+      <p class="origin-tagline" data-en="In 2020, a small group of university students started Mulai Disini Project — a platform to bring non-academic education to SMA/SMK students across Indonesia, through sharing, mentorship, and coaching." data-id="Pada tahun 2020, sekelompok kecil mahasiswa memulai Mulai Disini Project — sebuah platform untuk mewujudkan pemerataan pendidikan non-akademik bagi siswa/i SMA/SMK di seluruh Indonesia, melalui kegiatan sharing, mentorship, dan coaching.">In 2020, a small group of university students started Mulai Disini Project — a platform to bring non-academic education to SMA/SMK students across Indonesia, through sharing, mentorship, and coaching.</p>
+      <a class="origin-link" href="https://www.instagram.com/mulaidisiniproject/" target="_blank" rel="noopener" data-en="Check our programs &amp; reports here ↗" data-id="Lihat program &amp; laporan kami di sini ↗">Check our programs &amp; reports here ↗</a>
     </div>
   </section>
 
   <section class="story">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-tag">Why it started</span>
-        <h2>School teaches the syllabus. Life asks for a lot more.</h2>
+        <span class="section-tag" data-en="Why it started" data-id="Mengapa dimulai">Why it started</span>
+        <h2 data-en="School teaches the syllabus. Life asks for a lot more." data-id="Sekolah mengajarkan kurikulum. Kehidupan meminta jauh lebih banyak.">School teaches the syllabus. Life asks for a lot more.</h2>
       </div>
       <div class="story-grid" style="grid-template-columns:1fr;">
         <div class="story-col">
-          <p>Technology made learning possible anywhere, anytime, for anyone. But <strong>learning was never only academic</strong> — and many students stepped into university without ever building the habits, self-awareness, or coping tools that transition demanded of them.</p>
-          <p><strong>Mulai Disini Project</strong> paired rookies (SMA/SMK students) with buddy mentors for a three-month curriculum in self-development — reading, time management, motivation, and more — plus talks and public sharing sessions on Instagram Live.</p>
+          <p data-en="Technology made learning possible anywhere, anytime, for anyone. But <strong>learning was never only academic</strong> — and many students stepped into university without ever building the habits, self-awareness, or coping tools that transition demanded of them." data-id="Teknologi membuat pembelajaran bisa dilakukan di mana saja, kapan saja, oleh siapa saja. Namun <strong>pembelajaran tidak pernah hanya soal akademik</strong> — banyak siswa memasuki masa kuliah tanpa pernah membangun kebiasaan, kesadaran diri, atau kemampuan menghadapi perubahan yang dibutuhkan.">Technology made learning possible anywhere, anytime, for anyone. But <strong>learning was never only academic</strong> — and many students stepped into university without ever building the habits, self-awareness, or coping tools that transition demanded of them.</p>
+          <p data-en="<strong>Mulai Disini Project</strong> paired rookies (SMA/SMK students) with buddy mentors for a free, three-month online self-development curriculum — designed with a teacher from Ruangguru — covering reading, time management, motivation, and more, through group coaching and mentoring. The program focused on suburban areas." data-id="<strong>Mulai Disini Project</strong> mempertemukan rookies (siswa SMA/SMK) dengan buddy mentor dalam kurikulum self-development online gratis selama tiga bulan — diracik bersama seorang teacher dari Ruangguru — mencakup membaca, manajemen waktu, motivasi, dan lainnya, melalui coaching dan mentoring berkelompok. Program ini berfokus pada daerah suburban.">
+          <strong>Mulai Disini Project</strong> paired rookies (SMA/SMK students) with buddy mentors for a free, three-month online self-development curriculum — designed with a teacher from Ruangguru — covering reading, time management, motivation, and more, through group coaching and mentoring. The program focused on suburban areas.</p>
         </div>
       </div>
     </div>
@@ -302,23 +324,23 @@
   <section class="legacy">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-tag">What it built</span>
+        <span class="section-tag" data-en="What it built" data-id="Apa yang dibangun">What it built</span>
       </div>
       <div class="legacy-grid">
-        <div class="legacy-item"><b data-count-to="192">0</b><span>Rookies mentored</span></div>
-        <div class="legacy-item"><b data-count-to="120">0</b><span>Volunteer mentors</span></div>
-        <div class="legacy-item"><b data-count-to="1600" data-suffix="+">0</b><span>Community members</span></div>
+        <div class="legacy-item"><b data-count-to="192">0</b><span data-en="Rookies mentored" data-id="Rookies dibimbing">Rookies mentored</span></div>
+        <div class="legacy-item"><b data-count-to="120">0</b><span data-en="Volunteer mentors" data-id="Mentor sukarelawan">Volunteer mentors</span></div>
+        <div class="legacy-item"><b data-count-to="1600" data-suffix="+">0</b><span data-en="Community members" data-id="Anggota komunitas">Community members</span></div>
       </div>
     </div>
   </section>
 
   <section class="next-up">
     <div class="wrap">
-      <span class="section-tag tag">And then, it grew</span>
-      <h2>Mulai Disini Project became something wider.</h2>
-      <p>Under founder &amp; patron Anessa Huang, the same mission now carries further — as a club and a foundation, turning books, film, and art into funded education around the world.</p>
+      <span class="section-tag tag" data-en="And then, it grew" data-id="Dan kemudian, ia berkembang">And then, it grew</span>
+      <h2 data-en="Mulai Disini Project became something wider." data-id="Mulai Disini Project berkembang menjadi sesuatu yang lebih luas.">Mulai Disini Project became something wider.</h2>
+      <p data-en="Under founder &amp; patron Anessa Huang, the same mission now carries further — as a club and a foundation, turning books, film, and art into funded education." data-id="Di bawah founder &amp; patron Anessa Huang, misi yang sama kini melangkah lebih jauh — sebagai klub dan yayasan, mengubah buku, film, dan seni menjadi pendanaan pendidikan.">Under founder &amp; patron Anessa Huang, the same mission now carries further — as a club and a foundation, turning books, film, and art into funded education.</p>
       <button class="next-btn" id="nextBtn">
-        Meet White Bridges
+        <span data-en="Meet White Bridges" data-id="Temui White Bridges">Meet White Bridges</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
     </div>
@@ -332,11 +354,6 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="#" class="nav-back" id="backBtn">← Our origin</a>
-      <div class="nav-links">
-        <a href="#story2" id="navWhyWeExist" data-en="Why We Exist" data-id="Mengapa Kami Ada">Why We Exist</a>
-        <a href="#foundation2" id="navEducationLine" data-en="Impact Education Line" data-id="Lini Pendidikan Dampak">Impact Education Line</a>
-        <a href="#join2" id="navJoin" data-en="Join" data-id="Gabung">Join</a>
-      </div>
       <div class="lang-toggle">
         <button type="button" id="btnEn" class="active">EN</button>
         <button type="button" id="btnId">ID</button>
@@ -599,23 +616,29 @@
   const submitBtn = document.getElementById('submitBtn');
   const btnEn = document.getElementById('btnEn');
   const btnId = document.getElementById('btnId');
+  const a1BtnEn = document.querySelector('.a1-btn-en');
+  const a1BtnId = document.querySelector('.a1-btn-id');
   let currentLang = 'en';
 
   function applyLang(lang){
     currentLang = lang;
     btnEn.classList.toggle('active', lang === 'en');
     btnId.classList.toggle('active', lang === 'id');
-    document.querySelectorAll('#act2 [data-en]').forEach(el => {
+    a1BtnEn.classList.toggle('active', lang === 'en');
+    a1BtnId.classList.toggle('active', lang === 'id');
+    document.querySelectorAll('[data-en]').forEach(el => {
       const val = lang === 'id' ? el.getAttribute('data-id') : el.getAttribute('data-en');
       if(val !== null) el.innerHTML = val;
     });
-    document.querySelectorAll('#act2 [data-ph-en]').forEach(el => {
+    document.querySelectorAll('[data-ph-en]').forEach(el => {
       const val = lang === 'id' ? el.getAttribute('data-ph-id') : el.getAttribute('data-ph-en');
       if(val !== null) el.setAttribute('placeholder', val);
     });
   }
   btnEn.addEventListener('click', () => applyLang('en'));
   btnId.addEventListener('click', () => applyLang('id'));
+  a1BtnEn.addEventListener('click', () => applyLang('en'));
+  a1BtnId.addEventListener('click', () => applyLang('id'));
 
   // ---------- ACT 2: REGISTRATION FORM ----------
   function getRadioValue(name){
@@ -705,7 +728,7 @@
     }
 
     // single blocks
-    reveal('#act1 .origin-mark, #act1 .origin-tagline, #act1 .section-head, #act1 .story-col, #act1 .quote-card, #act1 .next-up .section-tag, #act1 .next-up h2, #act1 .next-up p, #act1 .next-btn');
+    reveal('#act1 .origin-mark, #act1 .origin-tagline, #act1 .origin-link, #act1 .section-head, #act1 .story-col, #act1 .quote-card, #act1 .next-up .section-tag, #act1 .next-up h2, #act1 .next-up p, #act1 .next-btn');
     reveal('#act2 .founder-mark, #act2 .founder-copy, #act2 .section-head, #act2 .story-col, #act2 .quote-card');
 
 
